@@ -23,11 +23,23 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_below="@id/longitudeInput"/>
+    <EditText
+        android:id="@+id/locationNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Location Name"
+        android:layout_below="@id/submitButton"/>
 
+    <Button
+        android:id="@+id/submitLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Location"
+        android:layout_below="@id/locationNameInput"/>
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/submitButton"/>
+        android:layout_below="@id/submitLocationButton"/>
 </RelativeLayout>
