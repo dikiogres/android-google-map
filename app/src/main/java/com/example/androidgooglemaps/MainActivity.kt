@@ -3,6 +3,7 @@ package com.example.androidgooglemaps;
 import android.Manifest
 import android.app.Activity
 
+import com.google.android.gms.maps.model.MarkerOptions
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
@@ -52,23 +53,29 @@ class MainActivity : AppCompatActivity() {
 
             if (latitude != null && longitude != null) {
                 val location = LatLng(latitude, longitude)
+                map.clear() // Clear existing markers
+                map.addMarker(MarkerOptions().position(location)) // Add marker
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
             } else {
                 Toast.makeText(this, "Invalid latitude or longitude", Toast.LENGTH_SHORT).show()
             }
         }
 
+
         submitLocationButton.setOnClickListener {
             val locationName = locationNameInput.text.toString().trim()
             try {
                 val location = getLocationFromName(locationName)
                 location?.let {
+                    map.clear() // Clear existing markers
+                    map.addMarker(MarkerOptions().position(it)) // Add marker
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(it, 15f))
                 } ?: Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show()
             } catch (e: IOException) {
                 Toast.makeText(this, "Geocoder service not available", Toast.LENGTH_SHORT).show()
             }
         }
+
 
 
         checkLocationPermission()
